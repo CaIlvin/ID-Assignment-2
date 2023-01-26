@@ -30,6 +30,7 @@ Wireframe: https://xd.adobe.com/view/47ae0e0b-9d3c-4af3-b017-182692ef05bc-12fd/
   - This project uses JS for automation of some features on the site
 
 ## Testing
+when user clicks the background 
 
 ## Credits
 

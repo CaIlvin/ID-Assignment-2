@@ -1,13 +1,19 @@
 body {
-    background-color: #333;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 2vw;
-  }
+  background-color: #333;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2vw;
+  cursor: url('Images/crosshairs-solid.svg'), auto;
+}
+
+.escButton {
+  background:none;
+  border-radius: 50%;
+}
+
+path {
+  fill: transparent;
+} 
   
-  path {
-    fill: transparent;
-  }
-  
-  text {
-    fill: #FF9800;
-  } 
+text {
+  fill: #FF9800;
+} 

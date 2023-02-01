@@ -5,12 +5,20 @@ body {
   font-size: 2vw;
   cursor: url('Images/crosshairs-solid.svg'), auto;
   height: 100vh;
+  overflow: hidden;
 }
 
 .escButton {
   background:none;
   border-radius: 50%;
+  border-style: none;
+  font-family: 'Press Start 2P', cursive;
   cursor: url('Images/crosshairs-solid.svg'), auto;
+}
+
+.escButton:hover{
+  background-color: #ffe600;
+  color: #ff0000;
 }
 
 #title {
@@ -18,13 +26,6 @@ body {
   color: #FF9800;
   text-align: center;
   margin: 0;
-}
-
-
-#startButton {
-  font-size: larger;
-  text-align: center;
-  border-style: solid black dashed;
 }
 
 .buttonWrapper {
@@ -35,16 +36,16 @@ body {
 
 .pushable {
   background: #da4b09;
-  border-radius: 12px;
+  border-radius: 100%;
   border: none;
   padding: 0;
   cursor: url('Images/crosshairs-solid.svg'), auto;
 }
 
 .front {
-  display: block;
+  display: flex;
   padding: 12px 42px;
-  border-radius: 12px;
+  border-radius: 100%;
   font-size: 1.25rem;
   background: #FF590D;
   color: white;
@@ -52,6 +53,10 @@ body {
   transition: transform 250ms;
   transform: translateY(-4px);
   left: 50%;
+  height: 6vw;
+  width: 2vw;
+  align-items: center;
+  justify-content: center;
 }
 
 .pushable:hover .front {
@@ -62,4 +67,46 @@ body {
   transform: translateY(-2px);
 }
 
+#scoreButton {
+  padding-top: 5vw;
+  margin-left: 60%;
+}
 
+#startButton{
+  height: 9vw;
+  width: 5vw;
+}
+
+.popup {
+  width: fit-content;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  text-align: center;
+  border-radius: 2vw;
+  padding: 0 2rem 2rem;
+  visibility: hidden;
+  transition: transform 800ms, top 800ms;
+}
+
+.showPopup {
+  top: 50%;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup button {
+  width: 20%;
+  margin-top: 1em;
+  padding: 1em 0;
+  background: #2fff00;
+  color: #333;
+  border: none;
+  outline: none;
+  font-size: 2em;
+  border-radius: 0.5vw;
+  cursor: url('Images/crosshairs-solid.svg'), auto;
+  
+}

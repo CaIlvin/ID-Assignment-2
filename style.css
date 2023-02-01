@@ -1,19 +1,65 @@
 body {
   background-color: #333;
+  margin: 0px;
   font-family: 'Press Start 2P', cursive;
   font-size: 2vw;
   cursor: url('Images/crosshairs-solid.svg'), auto;
+  height: 100vh;
 }
 
 .escButton {
   background:none;
   border-radius: 50%;
+  cursor: url('Images/crosshairs-solid.svg'), auto;
 }
 
-path {
-  fill: transparent;
-} 
-  
-text {
-  fill: #FF9800;
-} 
+#title {
+  font-size: 8vw;
+  color: #FF9800;
+  text-align: center;
+  margin: 0;
+}
+
+
+#startButton {
+  font-size: larger;
+  text-align: center;
+  border-style: solid black dashed;
+}
+
+.buttonWrapper {
+  height: fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.pushable {
+  background: #da4b09;
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: url('Images/crosshairs-solid.svg'), auto;
+}
+
+.front {
+  display: block;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  background: #FF590D;
+  color: white;
+  will-change: transform;
+  transition: transform 250ms;
+  transform: translateY(-4px);
+  left: 50%;
+}
+
+.pushable:hover .front {
+  transform: translateY(-6px);
+}
+
+.pushable:active .front {
+  transform: translateY(-2px);
+}
+
+

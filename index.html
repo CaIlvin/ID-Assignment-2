@@ -7,14 +7,22 @@
         <link rel = "Stylesheet" href = "style.css" type = "text/css">
     </head>
     <body>
-      <button class = "escButton">ESC</button>
-        <svg viewBox="0 0 500 500">
-            <path id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
-            <text width="1000">
-              <textPath xlink:href="#curve">
-                EARTH DEFENDER
-              </textPath>
-            </text>
-        </svg>
-        <script src="script.js"></script>
+      <nav>
+        <button class = "escButton">ESC</button>        
+      </nav>
+      <main>
+        <div class="titleWrapper">
+          <div>
+            <p id="title">EARTH DEFENDER</p>
+          </div>
+        </div>
+        <div class="buttonWrapper">
+          <button class="pushable">
+            <span class="front">
+              START
+            </span>
+          </button>          
+        </div>
+        <script src="script.js"></script>        
+      </main>
     </body>

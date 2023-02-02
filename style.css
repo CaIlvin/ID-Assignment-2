@@ -6,6 +6,8 @@ body {
   cursor: url('Images/crosshairs-solid.svg'), auto;
   height: 100vh;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity .5s;
 }
 
 .escButton {
@@ -33,7 +35,7 @@ body {
 
 .escButton:hover {
 	color: #ffe600;
-	transition-delay: .5s;
+	transition-delay: .35s;
 }
 
 .escButton:hover:before {
@@ -93,7 +95,7 @@ body {
   border: none;
   padding: 0;
   cursor: url('Images/crosshairs-solid.svg'), auto;
-   box-shadow: 5px 3px rgb(31, 31, 31); 
+  box-shadow: 5px 3px rgb(31, 31, 31); 
 }
 
 .front {
@@ -136,7 +138,7 @@ body {
   width: fit-content;
   background: rgb(31, 31, 31);
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
   color: #FF9800;
   transform: translate(-50%, -50%) scale(0.1);
@@ -145,11 +147,10 @@ body {
   border: 3px ridge black;
   padding: 0 2rem 2rem;
   visibility: hidden;
-  transition: transform 800ms, top 800ms;
+  transition: transform 800ms;
 }
 
 .showPopup {
-  top: 50%;
   visibility: visible;
   transform: translate(-50%, -50%) scale(1);
   z-index: 999;
@@ -160,8 +161,8 @@ body {
   margin-top: 1em;
   opacity: 50%;
   color: rgb(190, 190, 190);
- font-family: 'Press Start 2P', cursive;
- font-weight: bold;  
+  font-family: 'Press Start 2P', cursive;
+  font-weight: bold;  
   background: none;
   border: none;
   outline: none;

@@ -8,14 +8,14 @@
     </head>
     <body>
       <audio src="/Music/background-music.mp3" autoplay>
-        <embed src="/Music/background-music.mp3" hidden="true" loop="true">
+        <embed src="/Music/background-music.mp3" hidden="true" loop="true" autostart="true">
       </audio>
       <nav>
         <button class = "escButton buttonCenter" onclick="showPopup()">!</button>
         <div class="popup" id="popupWindow">
           <h1>Abandon Earth?</h1>
-          <button type="button" onclick="window.open('', '_self', ''); window.close();">YES!</button>
-          <button type="button" onclick="closepopup()">NO!</button>
+          <button type="button" id="yesButton" onclick="window.open('', '_self', ''); window.close();">YES</button>
+          <button type="button" id="noButton" onclick="closepopup()">NO</button>
         </div> 
       </nav>
       <main>
@@ -46,7 +46,6 @@
         function closepopup(){
         popup.classList.remove("showPopup");
       } 
-        let bgChange = document.getElementById("bodyChange")
         </script>        
       </main>
     </body>

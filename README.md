@@ -37,6 +37,9 @@ when user clicks the background
 
 ## Credits
 
+- [Pixabay] (https://pixabay.com/music/search/mood/energetic/?theme=background%20music&genre=electronic&mood=laid%20back)
+  - Background music sampling
+
 ### Content
 
 ### Media

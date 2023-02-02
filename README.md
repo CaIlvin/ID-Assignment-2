@@ -12,6 +12,7 @@ Wireframe: https://xd.adobe.com/view/47ae0e0b-9d3c-4af3-b017-182692ef05bc-12fd/
 ## Existing Features
 
 - Cursor is a crosshair
+- background music
 
 ### Feature left to implement
 

@@ -182,3 +182,103 @@ body {
 }
 
 
+.bgAnimation {
+  padding: 70px 0;
+  min-height: 50vh;
+  position: relative;
+}
+
+.shape img{
+  position: absolute;
+  width: 100%;
+  z-index: -9;
+}
+
+.shape .shape1 {
+  right: -160px;
+  top: -700px;
+  width: 400px;
+  opacity: 50%;
+  transform-origin: center;
+  animation: shape ease 30s infinite;
+}
+
+.shape .shape2 {
+  left: -100px;
+  bottom: 400px;
+  width: 500px;
+  opacity: 60%;
+  transform-origin: center;
+  animation: shape linear 35s infinite reverse;
+}
+
+@keyframes shape {
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+.shape .shape3 {
+  top: 0;
+  left: 0;
+  width: 200px;
+  opacity: 65%;
+  transform-origin: center;
+  animation: shape3 linear 40s infinite;
+  transform: translate(-200px, -100px) rotate(0deg);
+}
+
+@keyframes shape3 {
+  100% {
+    transform: translate(1300px, -600px) rotate(360deg);
+  }
+}
+
+.shape .shape4 {
+  left: 250px;
+  top: 50px;
+  width: 150px;
+  opacity: 40%;
+  transform-origin: center;
+  animation: shape4 linear 15s infinite 25s;
+  transform: translate(700px, 80px) rotate(0deg);
+}
+
+@keyframes shape4 {
+  100% {
+    transform: translate(1200px, -710px) rotate(360deg);
+  }
+}
+
+.shape .shape5 {
+  left: 500px;
+  top: -700px;
+  width: 100px;
+  opacity: 10%;
+  transform-origin: center;
+  animation: shape5 linear 30s infinite;
+  transform: translate(0px, -150px) rotate(0deg);
+}
+
+@keyframes shape5 {
+  100% {
+    opacity: 100%;
+    transform: translate(0px, 800px) rotate(720deg);
+  }
+}
+
+.shape .shape6 {
+  right: 0px;
+  top: -700px;
+  width: 250px;
+  opacity: 10%;
+  transform-origin: center;
+  animation: shape5 linear 45s infinite reverse;
+  transform: translate(-1080px, -100px) rotate(45deg);
+}
+
+@keyframes shape6 {
+  100% {
+    transform: translate(500px, 800px) rotate(180deg);
+  }
+}

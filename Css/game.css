@@ -1,0 +1,9 @@
+body {
+  background-color: #333;
+  margin: 0px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2vw;
+  cursor: url('Images/crosshairs-solid.svg'), auto;
+  height: 100vh;
+  overflow: hidden;
+}

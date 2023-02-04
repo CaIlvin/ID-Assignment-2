@@ -273,7 +273,7 @@ body {
   width: 250px;
   opacity: 10%;
   transform-origin: center;
-  animation: shape5 linear 45s infinite reverse;
+  animation: shape5 linear 15s infinite reverse;
   transform: translate(-1080px, -100px) rotate(45deg);
 }
 

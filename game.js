@@ -53,7 +53,7 @@ class Plane {
 }
 
 class Alien {
-    constructor() {
+    constructor({position}) {
         this.velocity = {
             x:0,
             y:0
@@ -63,11 +63,11 @@ class Alien {
         alien.src = './Images/alien.png'
         alien.onload = () => {
         this.image = alien
-        this.width = alien.width * .1
+        this.width = alien.width * .1 
         this.height = alien.height * .1
         this.position = {
-            x: canvas.width / 2 - this.width / 2, //Set x position of plane to be center of web 
-            y: canvas.height / 2 //Set y position of plane to be bottom of web
+            x: position.x, //Set x position of alien
+            y: position.y //Set y position of alien
         }           
         }
     }
@@ -76,16 +76,59 @@ class Alien {
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
     }
 
-    update() {
+    update({velocity}) {
         if (this.image) {
             this.load()
-            this.position.x += this.velocity.x //Shift plane position 
-            this.position.y += this.velocity.y //Shift plane position 
+            this.position.x += velocity.x //Shift plane position 
+            this.position.y += velocity.y //Shift plane position 
         }
     }
 }
 
+class Group {
+    constructor() {
+        this.position = {
+            x: 0,
+            y: 0
+        }
 
+        this.velocity = {
+            x:4,
+            y:0
+        }
+
+        this.aliens = []
+        const randomColumn = Math.floor(Math.random() * 10 + 5) // Generate random column of aliens 
+        const randomRow = Math.floor(Math.random() * 5 + 2) // Generate random row of aliens
+
+        this.width = randomColumn * 50
+        
+        for (let i=0; i<randomColumn; i++) {
+           for (let n=0; n<randomRow; n++) {
+            this.aliens.push(
+                new Alien({
+                    position: { // Space the aliens evenly 
+                        x: i * 50,
+                        y: n * 50
+                    }
+                })
+              )
+           }
+        }
+        console.log(this.aliens)
+    }
+    update() {
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+
+        this.velocity.y = 0
+        
+        if (this.position.x + this.width >= canvas.width || this.position.x <= 0) {
+            this.velocity.x = -this.velocity.x 
+            this.velocity.y = 50          
+        }
+    }
+}
 
 class Laser {
     constructor({position, velocity}) {
@@ -112,9 +155,9 @@ class Laser {
 
 const plane = new Plane()
 
-const alien = new Alien()
-
 const lasers = [] // To fire multiple laser 
+
+const groups = [new Group()]
 
 const keys = {
     q: {
@@ -130,11 +173,10 @@ const keys = {
     }
 }
 
-function animate() { // Initalize plane image
+function animate() { // Initalize plane and aliens 
     requestAnimationFrame(animate)
     c.fillStyle = '#333'
     c.fillRect(0, 0, canvas.width, canvas.height)
-    alien.update()
     plane.update()
     lasers.forEach((Laser, index) => {
         if (Laser.position.y + Laser.radius <= 0) { //Remove fired laser from array to prevent it slowing down process
@@ -148,6 +190,14 @@ function animate() { // Initalize plane image
         }
 
     })
+
+    groups.forEach(group => {
+        group.update()
+        group.aliens.forEach(alien => {
+            alien.update({velocity: group.velocity}) // Set the velocity of the group
+        })
+    })
+
     if (keys.q.pressed && plane.position.x >= 0) {
         plane.velocity.x = -10
         plane.rotation = -0.15

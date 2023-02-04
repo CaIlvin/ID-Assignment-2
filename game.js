@@ -52,6 +52,41 @@ class Plane {
     }
 }
 
+class Alien {
+    constructor() {
+        this.velocity = {
+            x:0,
+            y:0
+        }      
+
+        const alien = new Image()
+        alien.src = './Images/alien.png'
+        alien.onload = () => {
+        this.image = alien
+        this.width = alien.width * .1
+        this.height = alien.height * .1
+        this.position = {
+            x: canvas.width / 2 - this.width / 2, //Set x position of plane to be center of web 
+            y: canvas.height / 2 //Set y position of plane to be bottom of web
+        }           
+        }
+    }
+
+    load() {
+        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+    }
+
+    update() {
+        if (this.image) {
+            this.load()
+            this.position.x += this.velocity.x //Shift plane position 
+            this.position.y += this.velocity.y //Shift plane position 
+        }
+    }
+}
+
+
+
 class Laser {
     constructor({position, velocity}) {
         this.position = position
@@ -77,6 +112,8 @@ class Laser {
 
 const plane = new Plane()
 
+const alien = new Alien()
+
 const lasers = [] // To fire multiple laser 
 
 const keys = {
@@ -97,6 +134,7 @@ function animate() { // Initalize plane image
     requestAnimationFrame(animate)
     c.fillStyle = '#333'
     c.fillRect(0, 0, canvas.width, canvas.height)
+    alien.update()
     plane.update()
     lasers.forEach((Laser, index) => {
         if (Laser.position.y + Laser.radius <= 0) { //Remove fired laser from array to prevent it slowing down process

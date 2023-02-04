@@ -29,19 +29,24 @@ class Plane {
     }
 
     load() {
-        if (this.image)
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+    }
+
+    update() {
+        if (this.image) {
+            this.load()
+            this.position.x += this.velocity.x //Shift plane position 
+        }
     }
 }
 
 const plane = new Plane()
-plane.load()
 
-function animate() { // Initalize plane image faster
+function animate() { // Initalize plane image
     requestAnimationFrame(animate)
     c.fillStyle = '#333'
     c.fillRect(0, 0, canvas.width, canvas.height)
-    plane.load()
+    plane.update()
 }
 
 animate()
@@ -50,11 +55,29 @@ addEventListener('keydown', ({key}) => { //Get the input being pressed by the pl
     switch (key) {
         case 'q': // Move plane to the left
             console.log ('left')
+            plane.velocity.x = -5
             break
         case 'e': // Move plane to the right
             console.log ('right')
+            plane.velocity.x = +5
             break
         case ' ': // Fire button
+            console.log ('space')
+            break
+    }
+})
+
+addEventListener('keyup', ({key}) => { //Get the key being lifted by the player
+    switch (key) {
+        case 'q': // Stop the plane
+            console.log ('left')
+            plane.velocity.x = 0
+            break
+        case 'e': 
+            console.log ('right')
+            plane.velocity.x = 0
+            break
+        case ' ':
             console.log ('space')
             break
     }

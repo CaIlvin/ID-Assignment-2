@@ -37,7 +37,7 @@ class Plane {
 const plane = new Plane()
 plane.load()
 
-function animate() {
+function animate() { // Initalize plane image faster
     requestAnimationFrame(animate)
     c.fillStyle = '#333'
     c.fillRect(0, 0, canvas.width, canvas.height)
@@ -45,3 +45,17 @@ function animate() {
 }
 
 animate()
+
+addEventListener('keydown', ({key}) => { //Get the input being pressed by the player
+    switch (key) {
+        case 'q': // Move plane to the left
+            console.log ('left')
+            break
+        case 'e': // Move plane to the right
+            console.log ('right')
+            break
+        case ' ': // Fire button
+            console.log ('space')
+            break
+    }
+})

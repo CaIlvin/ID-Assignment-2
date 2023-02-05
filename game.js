@@ -256,7 +256,7 @@ const keys = {
 
 let score = 0
 
-var time = 0
+var time = 50
 
 let game = {
     end: false,
@@ -287,10 +287,7 @@ for (let i = 0; i < 100; i++){
 function upTimer() {
     if (!game.run) return
     ++time;
-    var hour = Math.floor(time / 3600);
-    var minute = Math.floor((time - hour * 3600) / 60);
-    var inSeconds = time -(hour * 3600 + minute * 60)
-    document.getElementById('time').innerHTML = inSeconds
+    document.getElementById('time').innerHTML = time
 }
 
 

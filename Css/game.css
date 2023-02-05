@@ -6,6 +6,7 @@ body {
   cursor: url('Images/crosshairs-solid.svg'), auto;
   height: 100vh;
   overflow: hidden;
+  cursor: none;
 }
 
 p {

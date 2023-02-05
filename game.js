@@ -1,3 +1,4 @@
+const scoreCount = document.querySelector('#score')
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
@@ -253,14 +254,20 @@ const keys = {
     }
 }
 
+let score = 0
+
+var time = 0
+
 let game = {
     end: false,
-    active: false
+    run: true
 }
 
 let frames = 0
 
 let frameSpawn = Math.floor((Math.random() * 100) + 500) 
+
+var timer = setInterval(upTimer, 1000);
 
 for (let i = 0; i < 100; i++){
     particles.push(new Particle({ // Create particle effects upon alien killed
@@ -276,6 +283,16 @@ for (let i = 0; i < 100; i++){
         color: 'white'
     }) )                            
 }
+
+function upTimer() {
+    if (!game.run) return
+    ++time;
+    var hour = Math.floor(time / 3600);
+    var minute = Math.floor((time - hour * 3600) / 60);
+    var inSeconds = time -(hour * 3600 + minute * 60)
+    document.getElementById('time').innerHTML = inSeconds
+}
+
 
 function displayParticles({object, color, fades}) {
     for (let i = 0; i < 12; i++){
@@ -296,6 +313,8 @@ function displayParticles({object, color, fades}) {
 }
 
 function animate() { // Initalize the game
+    if (!game.run) return
+
     requestAnimationFrame(animate)
     c.fillStyle = '#333'
     c.fillRect(0, 0, canvas.width, canvas.height)
@@ -338,6 +357,10 @@ function animate() { // Initalize the game
                     game.end = true             
                 }, 0) 
 
+                setTimeout(() => { 
+                    game.run = false      
+                }, 1000) 
+
                 displayParticles({
                     object: plane,
                     color: 'blue',
@@ -379,6 +402,8 @@ function animate() { // Initalize the game
                             laserHit === laser)
 
                         if (alienKilled && laserShot) { // Both conditions fulfilled
+                            score += 200
+                            scoreCount.innerHTML = score
                             displayParticles({
                                 object: alien,
                                 fades: true
@@ -463,7 +488,5 @@ addEventListener('keyup', ({key}) => { //Get the key being released by the playe
         case 'e':
             keys.e.pressed = false
             break
-        // case ' ': // Fire button
-        //     break
     }
 })

@@ -79,8 +79,8 @@ class Alien {
     update({velocity}) {
         if (this.image) {
             this.load()
-            this.position.x += velocity.x //Shift plane position 
-            this.position.y += velocity.y //Shift plane position 
+            this.position.x += velocity.x //Shift alien position 
+            this.position.y += velocity.y //Shift alien position 
         }
     }
 }
@@ -135,7 +135,7 @@ class Laser {
         this.position = position
         this.velocity = velocity
 
-        this.radius = 5
+        this.radius = 3
     }
     
     draw() {
@@ -175,7 +175,7 @@ const keys = {
 
 let frames = 0
 
-let frameSpawn = Math.floor((Math.random() * 700) + 500) 
+let frameSpawn = Math.floor((Math.random() * 100) + 500) 
 
 function animate() { // Initalize plane and aliens 
     requestAnimationFrame(animate)
@@ -195,19 +195,40 @@ function animate() { // Initalize plane and aliens
 
     })
 
-    groups.forEach(group => {
+    groups.forEach((group, groupNum) => {
         group.update()
         group.aliens.forEach((alien, i) => {
             alien.update({velocity: group.velocity}) // Set the velocity of the group
 
             lasers.forEach((laser, n) => {
                 if (laser.position.y - laser.radius <= alien.position.y + alien.height && laser.position.x + laser.radius
-                    >= alien.position.x && laser.position.x - laser.radius <= alien.position.x &&
+                    >= alien.position.x && laser.position.x - laser.radius <= alien.position.x + alien.width &&
                     laser.position.y + laser.radius >= alien.position.y) { // Detect collision of laser and alien, laser must be inbetween the left and right of the alien
 
                     setTimeout(() => { // Remove said laser and alien 
-                        group.aliens.splice(i, 1)
-                        lasers.splice(n, 1)
+                        const alienKilled = group.aliens.find(alienDied => {
+                            return alienDied === alien // Check for the alien in the array 
+                        })
+
+                        const laserShot = lasers.find(laserHit =>
+                            laserHit === laser)
+
+                        if (alienKilled && laserShot) { // Both conditions fulfilled
+                            group.aliens.splice(i, 1)
+                            lasers.splice(n, 1)    
+
+                            if(group.aliens.length > 0) { //Dynamic update of the length of the group 
+                                const firstAlien = group.aliens[0]
+                                const lastAlien = group.aliens[group.aliens.length - 1]
+
+                                group.width = lastAlien.position.x - firstAlien.position.x + lastAlien.width
+
+                                group.position.x = firstAlien.position.x
+                            }
+                            else {
+                                groups.splice(groupNum, 1) // Remove eliminated group
+                            }
+                        }
                     }, 0)
                 }
             })
@@ -256,7 +277,7 @@ addEventListener('keydown', ({key}) => { //Get the input being pressed by the pl
             
                 velocity: {
                     x:0,
-                    y:-20
+                    y:-30
                 }
             }))
             break

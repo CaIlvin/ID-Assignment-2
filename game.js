@@ -13,6 +13,8 @@ class Plane {
         
         this.rotation = 0
 
+        this.opacity = 1
+
         const plane = new Image()
         plane.src = './Images/Fighter jet 2.png'
         plane.onload = () => {
@@ -28,6 +30,7 @@ class Plane {
 
     load() {
         c.save()
+        c.globalAlpha = this.opacity
         c.translate(
             plane.position.x + plane.width / 2,
             plane.position.y + plane.height / 2
@@ -189,6 +192,43 @@ class Laser {
     }
 }
 
+class Particle {
+    constructor({position, velocity, radius, color, fades}) {
+        this.position = position
+        this.velocity = velocity
+
+        this.radius = radius
+        this.color = color
+        this.opacity = 1
+
+        this.fade = fades
+
+    }
+    
+    draw() {
+        c.save()
+        c.globalAlpha = this.opacity //Fading animation 
+        c.beginPath()
+        c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2) //Create a circle 
+        c.fillStyle = this.color
+        c.fill()
+        c.closePath()
+        c.restore()
+    }
+
+    update() {
+        this.draw()
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+
+
+        if (this.fade) {
+            this.opacity -= 0.01
+        }
+
+    }
+}
+
 const plane = new Plane()
 
 const lasers = [] // To fire multiple laser 
@@ -196,6 +236,8 @@ const lasers = [] // To fire multiple laser
 const groups = []
 
 const alienLasers = []
+
+const particles = []
 
 const keys = {
     q: {
@@ -211,15 +253,70 @@ const keys = {
     }
 }
 
+let game = {
+    end: false,
+    active: false
+}
+
 let frames = 0
 
 let frameSpawn = Math.floor((Math.random() * 100) + 500) 
 
-function animate() { // Initalize plane and aliens 
+for (let i = 0; i < 100; i++){
+    particles.push(new Particle({ // Create particle effects upon alien killed
+        position: {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height
+        }, 
+        velocity: {
+            x: 0,
+            y: 0.3
+        },
+        radius: Math.random() * 5,
+        color: 'white'
+    }) )                            
+}
+
+function displayParticles({object, color, fades}) {
+    for (let i = 0; i < 12; i++){
+        particles.push(new Particle({ // Create particle effects upon alien killed
+            position: {
+                x: object.position.x + object.width / 2 , 
+                y: object.position.y + object.height / 2
+            }, 
+            velocity: {
+                x: (Math.random() - 0.5) * 2,
+                y: (Math.random() - 0.5) * 2
+            },
+            radius: Math.random() * 3,
+            color: color || 'white',
+            fades
+        }) )                            
+    }
+}
+
+function animate() { // Initalize the game
     requestAnimationFrame(animate)
     c.fillStyle = '#333'
     c.fillRect(0, 0, canvas.width, canvas.height)
     plane.update()
+    particles.forEach( (particle, index) => {
+
+        if (particle.position.y - particle.radius >= canvas.height) {
+            particle.position.x = Math.random() * canvas.width
+            particle.position.y = -particle.radius
+        }
+
+        if (particle.opacity <= 0) {
+            setTimeout(() => {
+                particles.splice(index, 1)
+            }, 0)
+        }
+        else {
+            particle.update()            
+        }
+
+    })
     alienLasers.forEach((alienLaser, index) => {
         if (alienLaser.position.y + alienLaser.height >= canvas.height) {
             setTimeout(() => { 
@@ -231,9 +328,21 @@ function animate() { // Initalize plane and aliens
         alienLaser.update()            
         }
 
-        if(alienLaser.position.y + alienLaser.height >= plane.position.y &&
+        if(alienLaser.position.y + alienLaser.height >= plane.position.y && // Plane gets hit
             alienLaser.position.x + alienLaser.width >= plane.position.x &&
             alienLaser.position.x <= plane.position.x + plane.width){
+
+                setTimeout(() => { 
+                    alienLasers.splice(index, 1)
+                    plane.opacity = 0
+                    game.end = true             
+                }, 0) 
+
+                displayParticles({
+                    object: plane,
+                    color: 'blue',
+                    fades: true
+                })
         }
     })
     lasers.forEach((Laser, index) => {
@@ -270,6 +379,11 @@ function animate() { // Initalize plane and aliens
                             laserHit === laser)
 
                         if (alienKilled && laserShot) { // Both conditions fulfilled
+                            displayParticles({
+                                object: alien,
+                                fades: true
+                            })
+
                             group.aliens.splice(i, 1)
                             lasers.splice(n, 1)    
 
@@ -316,6 +430,7 @@ function animate() { // Initalize plane and aliens
 animate()
 
 addEventListener('keydown', ({key}) => { //Get the input being pressed by the player
+    if (game.end) return
     switch (key) {
         case 'q': // Move plane to the left
             keys.q.pressed = true

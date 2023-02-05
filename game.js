@@ -17,11 +17,11 @@ class Plane {
         this.opacity = 1
 
         const plane = new Image()
-        plane.src = './Images/Fighter jet 2.png'
+        plane.src = './Images/theo-document-1.png'
         plane.onload = () => {
         this.image = plane
-        this.width = plane.width * .1
-        this.height = plane.height * .1
+        this.width = plane.width * .05
+        this.height = plane.height * .05
         this.position = {
             x: canvas.width / 2 - this.width / 2, //Set x position of plane to be center of web 
             y: canvas.height - this.height - 20 //Set y position of plane to be bottom of web
@@ -66,7 +66,7 @@ class alienLaser {
     }
     
     draw() { //Create a circle 
-        c.fillStyle = 'green'
+        c.fillStyle = '#5CE6CE'
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
@@ -86,7 +86,7 @@ class Alien {
         }      
 
         const alien = new Image()
-        alien.src = './Images/alien.png'
+        alien.src = './Images/My project-1.png'
         alien.onload = () => {
         this.image = alien
         this.width = alien.width * .1 
@@ -117,7 +117,7 @@ class Alien {
                 y: this.position.y + this.height 
             },
             velocity: {
-                x: Math.random() * 3,
+                x: (Math.random() - 0.5) * 3,
                 y: 10
             }
         }))
@@ -133,13 +133,13 @@ class Group {
         }
 
         this.velocity = {
-            x:4,
+            x:5,
             y:0
         }
 
         this.aliens = []
         const randomColumn = Math.floor(Math.random() * 10 + 5) // Generate random column of aliens 
-        const randomRow = Math.floor(Math.random() * 5 + 2) // Generate random row of aliens
+        const randomRow = Math.floor(Math.random() * 5 + 3) // Generate random row of aliens
 
         this.width = randomColumn * 50
         
@@ -175,13 +175,13 @@ class Laser {
         this.position = position
         this.velocity = velocity
 
-        this.radius = 3
+        this.radius = 5
     }
     
     draw() {
         c.beginPath()
         c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2) //Create a circle 
-        c.fillStyle = 'rgb(223, 15, 15)'
+        c.fillStyle = '#B33639'
         c.fill()
         c.closePath()
     }
@@ -256,7 +256,7 @@ const keys = {
 
 let score = 0
 
-var time = 50
+var time = 0
 
 let game = {
     end: false,
@@ -277,10 +277,10 @@ for (let i = 0; i < 100; i++){
         }, 
         velocity: {
             x: 0,
-            y: 0.3
+            y: 3
         },
         radius: Math.random() * 5,
-        color: 'white'
+        color: '#CCCCCC'
     }) )                            
 }
 
@@ -303,7 +303,7 @@ function displayParticles({object, color, fades}) {
                 y: (Math.random() - 0.5) * 2
             },
             radius: Math.random() * 3,
-            color: color || 'white',
+            color: color || '#66806D',
             fades
         }) )                            
     }
@@ -323,7 +323,7 @@ function animate() { // Initalize the game
             particle.position.y = -particle.radius
         }
 
-        if (particle.opacity <= 0) {
+        if (particle.opacity <= 0) { // Fade particles out
             setTimeout(() => {
                 particles.splice(index, 1)
             }, 0)
@@ -360,7 +360,7 @@ function animate() { // Initalize the game
 
                 displayParticles({
                     object: plane,
-                    color: 'blue',
+                    color: '#807373',
                     fades: true
                 })
         }
@@ -379,7 +379,7 @@ function animate() { // Initalize the game
 
     groups.forEach((group, groupNum) => {
         group.update()
-        if (frames % 100 === 0 && group.aliens.length > 0 ){ // Alien fires laser
+        if (frames % 50 === 0 && group.aliens.length > 0 ){ // Alien fires laser
             group.aliens[Math.floor(Math.random() * group.aliens.length)].fire(alienLasers)
         }
         group.aliens.forEach((alien, i) => {
@@ -458,7 +458,13 @@ addEventListener('keydown', ({key}) => { //Get the input being pressed by the pl
         case 'q': // Move plane to the left
             keys.q.pressed = true
             break
+        case 'Q': // Move plane to the left
+            keys.q.pressed = true
+            break        
         case 'e': // Move plane to the right
+            keys.e.pressed = true
+            break
+        case 'E': // Move plane to the right
             keys.e.pressed = true
             break
         case ' ': // Fire button
@@ -471,7 +477,7 @@ addEventListener('keydown', ({key}) => { //Get the input being pressed by the pl
             
                 velocity: {
                     x:0,
-                    y:-30
+                    y:-30   
                 }
             }))
             break
@@ -484,6 +490,12 @@ addEventListener('keyup', ({key}) => { //Get the key being released by the playe
             keys.q.pressed = false
             break
         case 'e':
+            keys.e.pressed = false
+            break
+        case 'Q': // Stop plane movement
+            keys.q.pressed = false
+            break
+        case 'E':
             keys.e.pressed = false
             break
     }

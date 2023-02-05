@@ -157,7 +157,7 @@ const plane = new Plane()
 
 const lasers = [] // To fire multiple laser 
 
-const groups = [new Group()]
+const groups = []
 
 const keys = {
     q: {
@@ -172,6 +172,10 @@ const keys = {
         pressed: false
     }
 }
+
+let frames = 0
+
+let frameSpawn = Math.floor((Math.random() * 700) + 500) 
 
 function animate() { // Initalize plane and aliens 
     requestAnimationFrame(animate)
@@ -210,6 +214,14 @@ function animate() { // Initalize plane and aliens
         plane.velocity.x = 0
         plane.rotation = 0
     }
+
+    if (frames % frameSpawn === 0){ // Spawn new group of alien
+        groups.push(new Group())
+        frameSpawn = Math.floor((Math.random() * 700) + 500)
+        frames = 0
+    }
+
+    frames++
 }
 
 animate()

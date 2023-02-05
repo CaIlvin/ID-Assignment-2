@@ -197,8 +197,18 @@ function animate() { // Initalize plane and aliens
 
     groups.forEach(group => {
         group.update()
-        group.aliens.forEach(alien => {
+        group.aliens.forEach((alien, i) => {
             alien.update({velocity: group.velocity}) // Set the velocity of the group
+
+            lasers.forEach((laser, n) => {
+                if (laser.position.y - laser.radius <= alien.position.y + alien.height) { // Detect collision of laser and alien
+
+                    setTimeout(() => { // Remove said laser and alien 
+                        group.aliens.splice(i, 1)
+                        lasers.splice(n, 1)
+                    }, 0)
+                }
+            })
         })
     })
 

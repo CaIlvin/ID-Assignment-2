@@ -17,8 +17,8 @@ class Plane {
         plane.src = './Images/Fighter jet 2.png'
         plane.onload = () => {
         this.image = plane
-        this.width = plane.width * .2
-        this.height = plane.height * .2
+        this.width = plane.width * .1
+        this.height = plane.height * .1
         this.position = {
             x: canvas.width / 2 - this.width / 2, //Set x position of plane to be center of web 
             y: canvas.height - this.height - 20 //Set y position of plane to be bottom of web
@@ -52,6 +52,28 @@ class Plane {
     }
 }
 
+class alienLaser {
+    constructor({position, velocity}) {
+        this.position = position
+        this.velocity = velocity
+
+        this.width = 4
+        this.height = 12
+    }
+    
+    draw() { //Create a circle 
+        c.fillStyle = 'green'
+        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
+
+    update() {
+        this.draw()
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+    }
+}
+
+
 class Alien {
     constructor({position}) {
         this.velocity = {
@@ -83,7 +105,21 @@ class Alien {
             this.position.y += velocity.y //Shift alien position 
         }
     }
+
+    fire(alienLasers) {
+        alienLasers.push (new alienLaser({
+            position: {
+                x: this.position.x + this.width / 2,
+                y: this.position.y + this.height 
+            },
+            velocity: {
+                x: 0,
+                y: 5
+            }
+        }))
+    }
 }
+
 
 class Group {
     constructor() {
@@ -159,6 +195,8 @@ const lasers = [] // To fire multiple laser
 
 const groups = []
 
+const alienLasers = []
+
 const keys = {
     q: {
         pressed: false
@@ -182,9 +220,25 @@ function animate() { // Initalize plane and aliens
     c.fillStyle = '#333'
     c.fillRect(0, 0, canvas.width, canvas.height)
     plane.update()
+    alienLasers.forEach((alienLaser, index) => {
+        if (alienLaser.position.y + alienLaser.height >= canvas.height) {
+            setTimeout(() => { 
+                alienLasers.splice(index, 1)                
+            }, 0) 
+        }
+
+        else{
+        alienLaser.update()            
+        }
+
+        if(alienLaser.position.y + alienLaser.height >= plane.position.y &&
+            alienLaser.position.x + alienLaser.width >= plane.position.x &&
+            alienLaser.position.x <= plane.position.x + plane.width){
+        }
+    })
     lasers.forEach((Laser, index) => {
         if (Laser.position.y + Laser.radius <= 0) { //Remove fired laser from array to prevent it slowing down process
-            setTimeout(() => { // Prevent afterimage of laser bullet
+            setTimeout(() => { 
                 lasers.splice(index, 1)                
             }, 0)
         }
@@ -192,11 +246,13 @@ function animate() { // Initalize plane and aliens
         else {
             Laser.update() //Update position of each laser bullet            
         }
-
     })
 
     groups.forEach((group, groupNum) => {
         group.update()
+        if (frames % 100 === 0 && group.aliens.length > 0 ){ // Alien fires laser
+            group.aliens[Math.floor(Math.random() * group.aliens.length)].fire(alienLasers)
+        }
         group.aliens.forEach((alien, i) => {
             alien.update({velocity: group.velocity}) // Set the velocity of the group
 

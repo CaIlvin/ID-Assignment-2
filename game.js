@@ -201,7 +201,9 @@ function animate() { // Initalize plane and aliens
             alien.update({velocity: group.velocity}) // Set the velocity of the group
 
             lasers.forEach((laser, n) => {
-                if (laser.position.y - laser.radius <= alien.position.y + alien.height) { // Detect collision of laser and alien
+                if (laser.position.y - laser.radius <= alien.position.y + alien.height && laser.position.x + laser.radius
+                    >= alien.position.x && laser.position.x - laser.radius <= alien.position.x &&
+                    laser.position.y + laser.radius >= alien.position.y) { // Detect collision of laser and alien, laser must be inbetween the left and right of the alien
 
                     setTimeout(() => { // Remove said laser and alien 
                         group.aliens.splice(i, 1)

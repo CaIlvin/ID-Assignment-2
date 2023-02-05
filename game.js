@@ -117,8 +117,8 @@ class Alien {
                 y: this.position.y + this.height 
             },
             velocity: {
-                x: 0,
-                y: 5
+                x: Math.random() * 3,
+                y: 10
             }
         }))
     }
@@ -442,7 +442,8 @@ function animate() { // Initalize the game
 
     if (frames % frameSpawn === 0){ // Spawn new group of alien
         groups.push(new Group())
-        frameSpawn = Math.floor((Math.random() * 700) + 500)
+        frameSpawn = Math.floor((Math.random() * 200) + 200)
+        console.log(frameSpawn)
         frames = 0
     }
 

@@ -2,6 +2,38 @@ const scoreCount = document.querySelector('#score')
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
+//[STEP 0]: Make sure our document is A-OK
+$(document).ready(function () {
+    //what kind of interface we want at the start 
+    const APIKEY = "63d202d4a95709597409cfa8";
+    getContacts();
+
+    
+
+
+    //[STEP 4]: Create our AJAX settings. Take note of API key
+    let settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://scoreboard-0ca7.restdb.io/rest/player",
+        "method": "POST", //[cher] we will use post to send info
+        "headers": {
+        "content-type": "application/json",
+        "x-apikey": APIKEY,
+        "cache-control": "no-cache"
+        },
+        "processData": false,
+        "data": JSON.stringify(jsondata),
+    }
+
+    //[STEP 5]: Send our ajax request over to the DB and print response of the RESTDB storage to console.
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        //update our table 
+        getContacts();
+    });//end click 
+})
+                    
 canvas.width = innerWidth
 canvas.height = innerHeight
 
@@ -17,7 +49,7 @@ class Plane {
         this.opacity = 1
 
         const plane = new Image()
-        plane.src = './Images/theo-document-1.png'
+        plane.src = './Images/fighterJet.png'
         plane.onload = () => {
         this.image = plane
         this.width = plane.width * .05
@@ -86,7 +118,7 @@ class Alien {
         }      
 
         const alien = new Image()
-        alien.src = './Images/My project-1.png'
+        alien.src = './Images/alien.png'
         alien.onload = () => {
         this.image = alien
         this.width = alien.width * .1 
@@ -155,7 +187,6 @@ class Group {
               )
            }
         }
-        console.log(this.aliens)
     }
     update() {
         this.position.x += this.velocity.x
@@ -355,8 +386,9 @@ function animate() { // Initalize the game
                 }, 0) 
 
                 setTimeout(() => { 
-                    game.run = false      
-                }, 1000) 
+                    game.run = false
+                    // location.replace("gameEnd.html")
+                }, 1000)
 
                 displayParticles({
                     object: plane,
@@ -443,7 +475,6 @@ function animate() { // Initalize the game
     if (frames % frameSpawn === 0){ // Spawn new group of alien
         groups.push(new Group())
         frameSpawn = Math.floor((Math.random() * 200) + 200)
-        console.log(frameSpawn)
         frames = 0
     }
 

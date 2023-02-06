@@ -11,9 +11,15 @@ body {
 
 p {
   display: flex;
-  right: 0;
+  right: 10px;
   position: fixed;
   z-index: 10;
   font-size: 1rem;
   color: #808080;
+}
+
+#popupWindow {
+  position: absolute;
+  width: 100px;
+  height: 100px;
 }

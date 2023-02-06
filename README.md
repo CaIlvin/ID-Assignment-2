@@ -2,6 +2,10 @@
 
 This project is an ambitious studio project of creating a web game. The name of the game will be called "Earth Defender", a space invader insipired game.
 
+A game by:
+Calvin https://github.com/CaIlvin
+Vikram https://github.com/Viki9887
+
 ## Design Process
 
 This website is for those that wants a blast from the past of arcade game while being reinvented in our rendition of the game. This website is in hope of acheiving a retroactive arcade style of memory with this project heavily trying to recreate that experience.
@@ -38,7 +42,7 @@ The theme of the website is minimalism. Interactive elements built in the web to
 
 ## Testing
 
-when user clicks the background
+- Background music not working
 
 ## Credits
 

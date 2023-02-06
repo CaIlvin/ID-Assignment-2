@@ -321,10 +321,7 @@ function displayParticles({object, color, fades}) {
 }
 
 function animate() { // Initalize the game
-    if (!game.run) {
-        return
-    } 
-
+    if (!game.run) return
     requestAnimationFrame(animate)
     c.fillStyle = '#333'
     c.fillRect(0, 0, canvas.width, canvas.height)

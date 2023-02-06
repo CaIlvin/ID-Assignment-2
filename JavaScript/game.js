@@ -1,38 +1,39 @@
 const scoreCount = document.querySelector('#score')
 const canvas = document.querySelector('canvas')
+let popup = document.getElementById('popupWindow')
 const c = canvas.getContext('2d')
 
-//[STEP 0]: Make sure our document is A-OK
-$(document).ready(function () {
-    //what kind of interface we want at the start 
-    const APIKEY = "63d202d4a95709597409cfa8";
-    getContacts();
+// [STEP 0]: Make sure our document is A-OK
+// $(document).ready(function () {
+//     //what kind of interface we want at the start 
+//     const APIKEY = "63d202d4a95709597409cfa8";
+//     getContacts();
 
     
 
 
-    //[STEP 4]: Create our AJAX settings. Take note of API key
-    let settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://scoreboard-0ca7.restdb.io/rest/player",
-        "method": "POST", //[cher] we will use post to send info
-        "headers": {
-        "content-type": "application/json",
-        "x-apikey": APIKEY,
-        "cache-control": "no-cache"
-        },
-        "processData": false,
-        "data": JSON.stringify(jsondata),
-    }
+//     //[STEP 4]: Create our AJAX settings. Take note of API key
+//     let settings = {
+//         "async": true,
+//         "crossDomain": true,
+//         "url": "https://scoreboard-0ca7.restdb.io/rest/player",
+//         "method": "POST", //[cher] we will use post to send info
+//         "headers": {
+//         "content-type": "application/json",
+//         "x-apikey": APIKEY,
+//         "cache-control": "no-cache"
+//         },
+//         "processData": false,
+//         "data": JSON.stringify(jsondata),
+//     }
 
-    //[STEP 5]: Send our ajax request over to the DB and print response of the RESTDB storage to console.
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-        //update our table 
-        getContacts();
-    });//end click 
-})
+//     //[STEP 5]: Send our ajax request over to the DB and print response of the RESTDB storage to console.
+//     $.ajax(settings).done(function (response) {
+//         console.log(response);
+//         //update our table 
+//         getContacts();
+//     });//end click 
+// })
                     
 canvas.width = innerWidth
 canvas.height = innerHeight
@@ -315,6 +316,16 @@ for (let i = 0; i < 100; i++){
     }) )                            
 }
 
+window.transitionToPage = function(href) {
+    document.querySelector('body').style.opacity = 0
+    setTimeout(function() { 
+        window.location.href = href
+    }, 500)
+  }
+  document.addEventListener('DOMContentLoaded', function(event) {
+      document.querySelector('body').style.opacity = 1
+  })
+
 function upTimer() {
     if (!game.run) return
     ++time;
@@ -387,7 +398,7 @@ function animate() { // Initalize the game
 
                 setTimeout(() => { 
                     game.run = false
-                    // location.replace("gameEnd.html")
+                    popup.classList.add("showPopup")
                 }, 1000)
 
                 displayParticles({

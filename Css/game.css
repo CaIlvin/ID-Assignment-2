@@ -3,10 +3,8 @@ body {
   margin: 0px;
   font-family: 'Press Start 2P', cursive;
   font-size: 2vw;
-  cursor: url('Images/crosshairs-solid.svg'), auto;
   height: 100vh;
   overflow: hidden;
-  cursor: none;
 }
 
 p {
@@ -18,8 +16,29 @@ p {
   color: #808080;
 }
 
-#popupWindow {
+.popup {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  color: #808080;
+  text-align: center;
+  left: 35%;
+  top: 50%;
+  visibility: hidden;
+}
+
+#playerName {
+  font-family: 'Press Start 2P', cursive;
+  border: none;
+}
+
+#scoreSubmit {
+  background-color: #ff0000;
+  color: #808080;
+  font-family: 'Press Start 2P', cursive;
+  border: none;
+}
+
+.showPopup {
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 999;
 }

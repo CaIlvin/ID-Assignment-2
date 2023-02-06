@@ -2,38 +2,7 @@ const scoreCount = document.querySelector('#score')
 const canvas = document.querySelector('canvas')
 let popup = document.getElementById('popupWindow')
 const c = canvas.getContext('2d')
-
-// [STEP 0]: Make sure our document is A-OK
-// $(document).ready(function () {
-//     //what kind of interface we want at the start 
-//     const APIKEY = "63d202d4a95709597409cfa8";
-//     getContacts();
-
-    
-
-
-//     //[STEP 4]: Create our AJAX settings. Take note of API key
-//     let settings = {
-//         "async": true,
-//         "crossDomain": true,
-//         "url": "https://scoreboard-0ca7.restdb.io/rest/player",
-//         "method": "POST", //[cher] we will use post to send info
-//         "headers": {
-//         "content-type": "application/json",
-//         "x-apikey": APIKEY,
-//         "cache-control": "no-cache"
-//         },
-//         "processData": false,
-//         "data": JSON.stringify(jsondata),
-//     }
-
-//     //[STEP 5]: Send our ajax request over to the DB and print response of the RESTDB storage to console.
-//     $.ajax(settings).done(function (response) {
-//         console.log(response);
-//         //update our table 
-//         getContacts();
-//     });//end click 
-// })
+const APIKEY = "63d202d4a95709597409cfa8";
                     
 canvas.width = innerWidth
 canvas.height = innerHeight
@@ -352,7 +321,9 @@ function displayParticles({object, color, fades}) {
 }
 
 function animate() { // Initalize the game
-    if (!game.run) return
+    if (!game.run) {
+        return
+    } 
 
     requestAnimationFrame(animate)
     c.fillStyle = '#333'
@@ -542,3 +513,69 @@ addEventListener('keyup', ({key}) => { //Get the key being released by the playe
             break
     }
 })
+
+$(document).ready(function () {
+    getScore();
+    $("#scoreSubmit").on("click", function(e){
+        e.preventDefault();
+        let playerName = $("#playerName").val();
+        let playerScore = score;
+        let playerTime = time;
+    
+        let jsondata = {
+            "Name": playerName,
+            "Score": playerScore,
+            "Time": playerTime
+        };
+        let settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://scoreboard-0ca7.restdb.io/rest/player",
+            "method": "POST",
+            "headers": {
+            "content-type": "application/json",
+            "x-apikey": APIKEY,
+            "cache-control": "no-cache"
+            },
+            "processData": false,
+            "data": JSON.stringify(jsondata),
+            'beforeSend':function() {
+                $("scoreSubmit").prop("disabled", true);
+                $("scoreSubmit").trigger("reset");
+
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            getScore();
+        });
+
+
+    })
+
+
+})
+
+function getScore(limit = 10, all = true) {
+    let settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://scoreboard-0ca7.restdb.io/rest/player",
+        "method": "GET",
+        "headers": {
+        "content-type": "application/json",
+        "x-apikey": APIKEY,
+        "cache-control": "no-cache"
+        },
+    }  
+
+    $.ajax(settings).done(function (response) {
+        let content = ""
+        for (var i = 0; i < response.length && i < limit; i++)
+        {
+            content = `${content}
+            <tr id='${response[i]._id}'><td>${response[i].Name}</td>
+          <td>${response[i].Score}</td><td>${response[i].Time}</td>`
+        }
+    })
+}

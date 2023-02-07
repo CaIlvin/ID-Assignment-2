@@ -5,7 +5,6 @@ body {
   font-size: 2vw;
   height: 100vh;
   overflow: hidden;
-  cursor: none;
 }
 
 p {
@@ -17,6 +16,33 @@ p {
   color: #CCCCCC;
 }
 
+.guideWindow {
+  position: absolute;
+  color: rgb(209, 255, 110);
+  top: 35%;
+  left: 2%;
+  font-size: 1vw;
+  animation: guideWindow ease 5s 1 forwards;
+  -webkit-animation: guideWindow ease 5s 1 forwards;
+}
+
+@keyframes guideWindow {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-webkit-keyframes guideWindow {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
 .popup {
   position: absolute;
   color: #CCCCCC;
@@ -25,7 +51,7 @@ p {
   top: 50%;
   transform: translate(-50%, -50%) scale(0.1);
   transition: transform 3s;
-  visibility: hidden;
+  visibility: visible;
 }
 
 #playerName {
@@ -33,9 +59,13 @@ p {
   border: none;
 }
 
+#scoreSubmit {
+  color:aquamarine;
+}
+
 .inputButton {
-  background-color: #ff0000;
-  color: #333;
+  background: none;
+  color:aqua;
   font-family: 'Press Start 2P', cursive;
   border: none;
 }

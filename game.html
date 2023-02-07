@@ -8,12 +8,17 @@
         <link rel = "Stylesheet" href = "Css/game.css" type = "text/css">
     </head>
     <body>
+        <div class="guideWindow">
+            <h1>Q:Move Left</h1>
+            <h1>E:Move Right</h1>
+            <h1>Space:Fire</h1>
+        </div>
         <form id="formID">
             <div class="popup" id="popupWindow">
                 <h1>GAME OVER</h1>
                 <input type="text" id="playerName" maxlength="3" required  autocomplete="off">
-                <button type="submit" value="Exit" class="inputButton" id="scoreSubmit" onclick="popup.classList.remove('showPopup')">EXIT</button>
-                <button type="reset" value="refreshPage" class="inputButton" onclick="window.location.reload(true)">REFRESH</button>
+                <button type="submit" value="Exit" class="inputButton" id="scoreSubmit" onclick="popup.classList.remove('showPopup'), window.location.href = 'index.html'">SUBMIT</button>
+                <button type="reset" value="refreshPage" class="inputButton" onclick="window.location.reload(true)">RESTART</button>
             </div>            
         </form>
 

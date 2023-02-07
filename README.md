@@ -43,6 +43,7 @@ The theme of the website is minimalism. Interactive elements built in the web to
 ## Testing
 
 - Background music not working
+- On smaller screen, defeating aliens will occassionally drop them impromptly, without having to defeat the whole group
 
 ## Credits
 

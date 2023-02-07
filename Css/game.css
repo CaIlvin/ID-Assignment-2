@@ -19,7 +19,7 @@ p {
 .guideWindow {
   position: absolute;
   color: rgb(209, 255, 110);
-  top: 35%;
+  top: 32%;
   left: 2%;
   font-size: 1vw;
   animation: guideWindow ease 5s 1 forwards;
@@ -51,12 +51,14 @@ p {
   top: 50%;
   transform: translate(-50%, -50%) scale(0.1);
   transition: transform 3s;
-  visibility: visible;
+  visibility: hidden;
 }
 
 #playerName {
   font-family: 'Press Start 2P', cursive;
   border: none;
+  width: 10%;
+  text-align: center;
 }
 
 #scoreSubmit {

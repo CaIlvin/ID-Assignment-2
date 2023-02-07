@@ -141,7 +141,7 @@ class Group {
 
         this.aliens = []
         const randomColumn = Math.floor(Math.random() * 5 + 5) // Generate random column of aliens 
-        const randomRow = Math.floor(Math.random() * 5 + 2) // Generate random row of aliens
+        const randomRow = Math.floor(Math.random() * 3 + 3) // Generate random row of aliens
 
         this.width = randomColumn * 50
         

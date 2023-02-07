@@ -16,6 +16,8 @@
         </div>
         <form id="formID">
             <div class="popup" id="popupWindow">
+                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_ttCexGoEas.json"  
+                background="transparent"  speed="0.4"  style="width: 25%; height: 25%; margin: 0 auto;"  loop  autoplay></lottie-player>
                 <h1>GAME OVER</h1>
                 <input type="text" id="playerName" maxlength="3" required  autocomplete="off">
                 <button type="submit" value="Exit" class="inputButton" id="scoreSubmit" onclick="popup.classList.remove('showPopup'), window.location.href = 'index.html'">SUBMIT</button>
@@ -31,6 +33,7 @@
             <canvas></canvas>            
         </div>
     </body>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="JavaScript/game.js"></script>
 </html>

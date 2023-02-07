@@ -1,27 +1,51 @@
 body {
-    background-color: #333;
-    text-align: center;
-    cursor: url('Images/crosshairs-solid.svg'), auto;
+  background-color: #353540;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  color: #D9D0C7;  
 }
 
 table {
-    margin: 0 auto;
-    border-collapse: collapse;
-    width: 50%;
-    text-align: center;
-    font-size: 18px;
-    color: white;
-  }
-  
-  th, td {
-    border: 1px solid white;
-    padding: 8px;
-  }
-  
-  th {
-    background-color: green;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #ddd;
-  }
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
+.bgAnimation {
+  position: absolute;
+}
+
+.boardWrapper{
+  height: 100vh;
+}
+
+th, td {
+  border: none;
+  padding: 8px;
+}
+
+th {
+  background-color: #04D9D9;
+}
+
+tr {
+  background-color: #021F59;
+  transition: all .1s ease-in-out;
+}
+
+tr:hover {
+  transform: scale(1.1);
+}
+
+tr:nth-child(even) {
+  background-color: #A904BF;
+}
+
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}

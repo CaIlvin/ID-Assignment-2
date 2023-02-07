@@ -1,0 +1,27 @@
+body {
+    background-color: #333;
+    text-align: center;
+    cursor: url('Images/crosshairs-solid.svg'), auto;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 50%;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+  }
+  
+  th, td {
+    border: 1px solid white;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: green;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #ddd;
+  }

@@ -5,13 +5,21 @@
         <title>Earth Defender</title>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
         <link rel = "Stylesheet" href = "Css/style.css " type = "text/css">
+        <style>
+          html {
+            cursor: url('Images/crosshairs-solid.svg'), auto;  
+          }
+          .escButton, .pushable, .popup button {
+            cursor: url('Images/crosshairs-solid.svg'), auto;  
+          }
+        </style>
     </head>
     <body>
       <audio src="/Music/background-music.mp3" autoplay>
         <embed src="/Music/background-music.mp3" hidden="true" loop="true" autostart="true">
       </audio>
       <nav>
-        <button class = "escButton buttonCenter" onclick="showPopup()">!</button>
+        <button class = "escButton buttonCenter prevent-select" onclick="showPopup()">!</button>
         <div class="popup" id="popupWindow">
           <h1>Abandon Earth?</h1>
           <button type="button" id="yesButton" onclick="window.open('', '_self', ''); window.close();">YES</button>
@@ -19,19 +27,19 @@
         </div> 
       </nav>
       <main>
-        <div class="titleWrapper">
+        <div class="titleWrapper prevent-select">
           <div>
             <p id="title">EARTH DEFENDER</p>
           </div>
         </div>
-        <div class="buttonWrapper" id="scoreButton">
+        <div class="buttonWrapper prevent-select  " id="scoreButton">
           <button class="pushable">
             <span class="front" onclick="transitionToPage('scoreboard.html')">
               SCORE
             </span>
           </button>          
         </div>       
-        <div class="buttonWrapper">
+        <div class="buttonWrapper prevent-select">
           <button class="pushable">
             <span class="front"  id="startButton" onclick="transitionToPage('game.html')">
               START

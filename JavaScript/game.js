@@ -538,7 +538,7 @@ $(document).ready(function () {
             "data": JSON.stringify(jsondata),
             'beforeSend':function() {
                 $("scoreSubmit").prop("disabled", true);
-                $("scoreSubmit").trigger("reset");
+                $("formID").trigger("reset");
 
             }
         }
@@ -546,8 +546,6 @@ $(document).ready(function () {
         $.ajax(settings).done(function (response) {
             getScore();
         });
-
-
     })
 
 

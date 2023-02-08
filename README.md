@@ -20,6 +20,7 @@ The theme of the website is minimalism. Interactive elements built in the web to
 - Cursor is a crosshair
 - background music
 - Fire projectiles
+- Punching in the konami code in landing page
 
 ### Feature left to implement
 

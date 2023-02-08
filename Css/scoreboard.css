@@ -31,6 +31,24 @@ body {
   }
 }
 
+#popupArrow {
+  visibility: hidden;
+}
+
+.optionWrapper {
+  display: flex;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  padding: 3% 0;
+  justify-content: space-evenly;
+  text-shadow: 5px 5px rgb(31, 31, 31);
+}
+
+#homeOption:hover #popupArrow, #gameOption:hover #popupArrow {
+  visibility: visible;
+}
+
 table {
   margin: 0 auto;
   border-collapse: collapse;

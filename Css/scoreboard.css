@@ -3,10 +3,8 @@ body {
   text-align: center;
   font-family: 'Press Start 2P', cursive;
   color: #D9D0C7;  
-  -webkit-animation: bgcolor 20s infinite;
-  animation: bgcolor 10s infinite;
-  -webkit-animation-direction: alternate;
-  animation-direction: alternate;  
+  -webkit-animation: bgcolor 20s infinite alternate;
+  animation: bgcolor 10s infinite alternate;
 }
 
 @keyframes bgcolor {
@@ -47,6 +45,17 @@ body {
 
 #homeOption:hover #popupArrow, #gameOption:hover #popupArrow {
   visibility: visible;
+  animation: flicker linear 1s infinite forwards;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
 }
 
 table {

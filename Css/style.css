@@ -3,11 +3,13 @@ body {
   margin: 0px;
   font-family: 'Press Start 2P', cursive;
   font-size: 2vw;
-  height: 100vh;
+  /* height: 100%; */
   overflow: hidden;
   opacity: 0;
   transition: opacity .5s;
 }
+
+
 
 .escButton {
   background:none;  
@@ -203,18 +205,18 @@ body {
 }
 
 .shape .shape1 {
-  right: -160px;
-  top: -700px;
-  width: 400px;
+  right: -10%;
+  top: -115%;
+  width: 25%;
   opacity: 50%;
   transform-origin: center;
   animation: shape ease 30s infinite;
 }
 
 .shape .shape2 {
-  left: -100px;
-  bottom: 400px;
-  width: 500px;
+  left: -8%;
+  bottom: 60%;
+  width: 30%;
   opacity: 60%;
   transform-origin: center;
   animation: shape linear 35s infinite reverse;
@@ -229,27 +231,27 @@ body {
 .shape .shape3 {
   top: 0;
   left: 0;
-  width: 200px;
+  width: 12%;
   opacity: 65%;
   transform-origin: center;
   animation: shape3 linear 40s infinite;
-  transform: translate(-200px, -100px) rotate(0deg);
+  transform: translate(-20%, -10%) rotate(0deg);
 }
 
 @keyframes shape3 {
   100% {
-    transform: translate(1300px, -600px) rotate(360deg);
+    transform: translate(130%, -600px) rotate(360deg);
   }
 }
 
 .shape .shape4 {
-  left: 250px;
-  top: 50px;
-  width: 150px;
+  left: 25%;
+  top: 5%;
+  width: 18%;
   opacity: 40%;
   transform-origin: center;
-  animation: shape4 linear 15s infinite 25s;
-  transform: translate(700px, 80px) rotate(0deg);
+  animation: shape4 linear 15s infinite;
+  transform: translate(70%, -8%) rotate(0deg);
 }
 
 @keyframes shape4 {
@@ -259,10 +261,10 @@ body {
 }
 
 .shape .shape5 {
-  left: 500px;
-  top: -700px;
-  width: 100px;
-  opacity: 10%;
+  left: 35%;
+  top: -110%;
+  width: 8%;
+  opacity: 23%;
   transform-origin: center;
   animation: shape5 linear 30s infinite;
   transform: translate(0px, -150px) rotate(0deg);
@@ -277,17 +279,48 @@ body {
 
 .shape .shape6 {
   right: 0px;
-  top: -700px;
-  width: 250px;
-  opacity: 10%;
+  top: -80%;
+  width: 13%;
+  opacity: 14%;
   transform-origin: center;
-  animation: shape5 linear 15s infinite reverse;
+  animation: shape5 linear 25s infinite reverse;
   transform: translate(-1080px, -100px) rotate(45deg);
 }
 
 @keyframes shape6 {
   100% {
     transform: translate(500px, 800px) rotate(180deg);
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .shape {
+    display: none;
+  }
+  body {
+    -webkit-animation: bgcolor 20s infinite alternate;
+     animation: bgcolor 10s infinite alternate;
+  }
+  @keyframes bgcolor {
+    0% {
+        background-color: #617C8C
+    }
+  
+    30% {
+        background-color: #6B98BF
+    }
+  
+    60% {
+        background-color: #5E88BF
+    }
+  
+    90% {
+        background-color: #1F3140
+    }
+  
+    100% {
+        background-color: #0D1C26
+    }
   }
 }
 

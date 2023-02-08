@@ -16,24 +16,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
   document.querySelector('body').style.opacity = 1
 })
 
-let countA = 0
+let countUp = 0
 
-let countB = 0
+let countDown = 0
 
+let countLeft = 0
+
+let countRight = 0
 const inputs = {
-  ArrowUp: {
+  A: {
     pressed: false
   },
 
-  ArrowDown: {
-    pressed: false
-  },
-
-  ArrowLeft: {
-    pressed: false
-  },
-
-  ArrowRight: {
+  B: {
     pressed: false
   },
   
@@ -44,7 +39,7 @@ const inputs = {
 
 function secret() {
   requestAnimationFrame(secret)
-  if (inputs.ArrowUp.pressed && inputs.ArrowDown.pressed && inputs.ArrowLeft.pressed && inputs.ArrowRight.pressed && inputs.Enter.pressed && countA === 2 && countB === 2) {
+  if (inputs.A.pressed && inputs.B.pressed && inputs.Enter.pressed && countUp === 2 && countDown === 2 && countLeft === 2 && countRight === 2) {
     window.location.href = 'secret.html'
   }
 }
@@ -54,26 +49,26 @@ secret()
 addEventListener('keydown', ({key}) => {
   console.log(key)
   switch(key) {
+    case 'a':
+      inputs.A.pressed = true
+      break
+    case 'b':
+      inputs.B.pressed = true
+      break
     case 'ArrowUp':
-      inputs.ArrowUp.pressed = true
+      countUp += 1
       break
     case 'ArrowDown':
-      inputs.ArrowDown.pressed = true
+      countDown += 1
       break
     case 'ArrowLeft':
-      inputs.ArrowLeft.pressed = true
+      countLeft += 1
       break
     case 'ArrowRight':
-      inputs.ArrowRight.pressed = true
+      countRight += 1
       break
     case 'Enter':
       inputs.Enter.pressed = true
-      break
-    case 'a':
-      countA += 1
-      break
-    case 'b':
-      countB += 1
       break
   }
 })

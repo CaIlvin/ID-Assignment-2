@@ -3,6 +3,32 @@ body {
   text-align: center;
   font-family: 'Press Start 2P', cursive;
   color: #D9D0C7;  
+  -webkit-animation: bgcolor 20s infinite;
+  animation: bgcolor 10s infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;  
+}
+
+@keyframes bgcolor {
+  0% {
+      background-color: #333
+  }
+
+  30% {
+      background-color: #332E2E
+  }
+
+  60% {
+      background-color: #33322E
+  }
+
+  90% {
+      background-color: #2E332F
+  }
+
+  100% {
+      background-color: #2E2E33
+  }
 }
 
 table {
@@ -12,10 +38,6 @@ table {
   height: 100%;
   text-align: center;
   font-size: 18px;
-}
-
-.bgAnimation {
-  position: absolute;
 }
 
 .boardWrapper{

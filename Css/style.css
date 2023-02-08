@@ -78,7 +78,20 @@ body {
   color: #FF9800;
   text-align: center;
   text-shadow: 5px 5px rgb(31, 31, 31);
+  animation: float 6s ease-in-out infinite;
   margin: 0;
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-15px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
 }
 
 .buttonWrapper {

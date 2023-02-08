@@ -44,7 +44,7 @@ function getScore(limit = 10, all = true) {
   let settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://scoreboard-0ca7.restdb.io/rest/player",
+      "url": "https://scoreboard-0ca7.restdb.io/rest/player?q={}&sort=Score&dir=-1",
       "method": "GET",
       "headers": {
       "content-type": "application/json",

@@ -10,18 +10,13 @@
     </head>
     <body>
         <audio id="background-music" src="/Music/gameBGM.mp3" autoplay>
-            <embed src="/Music/gameBGM.mp3" hidden="true" loop="true" autostart="true">
+            <embed src="/Music/gameBGM.mp3" loop="true" autostart="true">
         </audio> 
         <div class="guideWindow">
             <h1>Q:Move Left</h1>
             <h1>E:Move Right</h1>
             <h1>Space:Fire</h1>
         </div>
-        <div class="controls">
-            <button id="leftButton">Left</button>
-            <button id="shootButton">Shoot</button>
-            <button id="rightButton">Right</button>
-          </div>
         <form id="formID">
             <div class="popup prevent-select" id="popupWindow">
                 <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_ttCexGoEas.json"  
@@ -40,8 +35,8 @@
             </p>            
             <canvas></canvas>            
         </div>
-    </body>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="JavaScript/game.js" defer></script>
+    <script src="JavaScript/game.js" defer></script>        
+    </body>
 </html>

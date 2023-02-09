@@ -1,67 +1,68 @@
-const scoreCount = document.querySelector('#score')
-const canvas = document.querySelector('canvas')
-let popup = document.getElementById('popupWindow')
-const c = canvas.getContext('2d')
+const scoreCount = document.querySelector('#score');
+const canvas = document.querySelector('canvas');
+let popup = document.getElementById('popupWindow');
+const c = canvas.getContext('2d');
 const APIKEY = "63d202d4a95709597409cfa8";
                     
-canvas.width = innerWidth
-canvas.height = innerHeight
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
 var music = document.getElementById('background-music');
+var tablet = window.matchMedia("(max-width: 980px)");
 
 function reduceVolume() {
-    music.volume = 0.4
+    music.volume = 0.4;
 }
 
-reduceVolume()
+reduceVolume();
 
 class Plane {
     constructor() {
         this.velocity = {
             x:0,
             y:0
-        }      
+        };
         
-        this.rotation = 0
+        this.rotation = 0; // Default rotation
 
-        this.opacity = 1
+        this.opacity = 1;
 
-        const plane = new Image()
-        plane.src = './Images/fighterJet.png'
+        const plane = new Image();
+        plane.src = './Images/fighterJet.png';
         plane.onload = () => {
-        this.image = plane
-        this.width = plane.width * .05
-        this.height = plane.height * .05
+        this.image = plane;
+        this.width = plane.width * .05;
+        this.height = plane.height * .05;
         this.position = {
             x: canvas.width / 2 - this.width / 2, //Set x position of plane to be center of web 
             y: canvas.height - this.height - 20 //Set y position of plane to be bottom of web
-        }           
-        }
+        };           
+        };
     }
 
-    load() {
-        c.save()
-        c.globalAlpha = this.opacity
+    load() { //Load in plane
+        c.save();
+        c.globalAlpha = this.opacity;
         c.translate(
             plane.position.x + plane.width / 2,
             plane.position.y + plane.height / 2
-        )
+        );
 
-        c.rotate(this.rotation) // Rotate image with canvas
+        c.rotate(this.rotation); // Rotate image with canvas
 
         c.translate(
             -plane.position.x - plane.width / 2,
             -plane.position.y - plane.height / 2
-        )
+        );
 
-        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
-        c.restore()
+        c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        c.restore();
     }
 
     update() {
         if (this.image) {
-            this.load()
-            this.position.x += this.velocity.x //Shift plane position 
+            this.load();
+            this.position.x += this.velocity.x; //Shift plane position 
         }
     }
 }
@@ -80,7 +81,7 @@ class alienLaser {
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
-    update() {
+    update() { //Update laser position
         this.draw()
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
@@ -249,7 +250,7 @@ const alienLasers = []
 
 const particles = []
 
-const keys = {
+const keys = { //Store input values
     q: {
         pressed: false
     },
@@ -274,7 +275,7 @@ let game = {
 
 let frames = 0
 
-let frameSpawn = Math.floor((Math.random() * 100) + 500) 
+let frameSpawn = Math.floor((Math.random() * 100) + 500) // Value which a new group of alien spawn
 
 var timer = setInterval(upTimer, 1000);
 
@@ -293,7 +294,7 @@ for (let i = 0; i < 100; i++){
     }) )                            
 }
 
-window.transitionToPage = function(href) {
+window.transitionToPage = function(href) { //Transition effect to home page
     document.querySelector('body').style.opacity = 0
     setTimeout(function() { 
         window.location.href = href
@@ -582,25 +583,56 @@ function getScore(limit = 10, all = true) {
         }
     })
 }
-function addMobileControls() {
+
+function addMobileControls(tablet) {
     // create buttons
     var leftBtn = document.createElement("button");
-    leftBtn.innerHTML = "Left";
+    leftBtn.innerHTML = "&#60;";
     leftBtn.style.position = "fixed";
-    leftBtn.style.left = "0";
-    leftBtn.style.bottom = "0";
-  
+    leftBtn.style.left = "8%";
+    leftBtn.style.bottom = "5%";
+    leftBtn.style.fontSize = "5vw";
+    leftBtn.style.background = "None";
+    leftBtn.style.border = "None";
+    leftBtn.style.color = "#807373";
+    if (tablet.matches) {
+        leftBtn.style.visibility = "Visible"
+    }
+    else {
+        leftBtn.style.visibility = "Hidden"        
+    }
+
     var rightBtn = document.createElement("button");
-    rightBtn.innerHTML = "Right";
+    rightBtn.innerHTML = "&#62;";
     rightBtn.style.position = "fixed";
-    rightBtn.style.right = "0";
-    rightBtn.style.bottom = "0";
+    rightBtn.style.left = "18%";
+    rightBtn.style.bottom = "5%";
+    rightBtn.style.fontSize = "5vw";
+    rightBtn.style.background = "None";
+    rightBtn.style.border = "None";
+    rightBtn.style.color = "#807373";
+    if (tablet.matches) {
+        rightBtn.style.visibility = "Visible"
+    }
+    else {
+        rightBtn.style.visibility = "Hidden"        
+    }
   
     var shootBtn = document.createElement("button");
-    shootBtn.innerHTML = "Shoot";
+    shootBtn.innerHTML = "O";
     shootBtn.style.position = "fixed";
-    shootBtn.style.right = "50%";
-    shootBtn.style.bottom = "0";
+    shootBtn.style.right = "8%";
+    shootBtn.style.bottom = "5%";
+    shootBtn.style.fontSize = "5vw";
+    shootBtn.style.background = "None";
+    shootBtn.style.border = "None";
+    shootBtn.style.color = "#807373";
+    if (tablet.matches) {
+        shootBtn.style.visibility = "Visible"
+    }
+    else {
+        shootBtn.style.visibility = "Hidden"        
+    }
   
     // append buttons to the document body
     document.body.appendChild(leftBtn);
@@ -610,21 +642,38 @@ function addMobileControls() {
     // add event listeners to buttons
     leftBtn.addEventListener("click", function() {
       // call the function to move the player left
-      moveLeft();
+      keys.q.pressed = true      
+      setTimeout(() => { 
+        keys.q.pressed = false        
+    }, 100)
     });
   
     rightBtn.addEventListener("click", function() {
       // call the function to move the player right
-      moveRight();
+      keys.e.pressed = true
+      setTimeout(() => { 
+        keys.e.pressed = false        
+      }, 100)
     });
   
     shootBtn.addEventListener("click", function() {
       // call the function to shoot
-      shoot();
+      lasers.push(new Laser({ // Append laser to array 
+        position: {
+            x: plane.position.x + plane.width / 2,
+            y: plane.position.y,
+    
+        },
+    
+        velocity: {
+            x:0,
+            y:-30   
+        }
+    }))
     });
-  }
-  
-  window.addEventListener("load", function() {
-    addMobileControls();
-  });
+}
+
+window.addEventListener("load", function() {
+    addMobileControls(tablet);
+});
   

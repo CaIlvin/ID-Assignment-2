@@ -7,6 +7,14 @@ const APIKEY = "63d202d4a95709597409cfa8";
 canvas.width = innerWidth
 canvas.height = innerHeight
 
+var music = document.getElementById('background-music');
+
+function reduceVolume() {
+    music.volume = 0.4
+}
+
+reduceVolume()
+
 class Plane {
     constructor() {
         this.velocity = {

@@ -21,6 +21,7 @@ The theme of the website is minimalism. Interactive elements built in the web to
 - Ability to add name, score and time in the game page and view live update in score page
 - Mobile compatible
 - Entering the Konami code (up up down down left right left right b a enter) will bring user to the serect/credits page
+- Responsive volume controls
 
 ### Feature left to implement
 
@@ -45,15 +46,18 @@ The theme of the website is minimalism. Interactive elements built in the web to
 ## Testing
 
 1. Achievements:
-   i. Go to "Game" page
-   ii. Earns 100k point for the run
-   iii. A sidebar shows up at the bottom right, reading "Achievement unlocked!"
-   iv. User go back to home page and click on the trophy icon
-   v. Display all achievements that are locked and unlocked
 
-On mobile, the landing page background is changed to color shifting. The game page and secret page is not optimized for mobile
+- Go to "Game" page
+- Earns 100k point for the run
+- A sidebar shows up at the bottom right, reading "Achievement unlocked!"
+- User go back to home page and click on the trophy icon
+- Display all achievements that are locked and unlocked
 
-- Background music not working. Button that redirects to home page will enable it
+Difference on mobile:
+
+- On mobile, the landing page background is changed to color shifting. The game page and secret page is not optimized for mobile
+
+- Background music not working upon landing. Button that redirects to home page will enable it
 - On smaller screen, defeating aliens will occassionally drop them impromptly, without having to defeat the whole group
 
 ## Credits

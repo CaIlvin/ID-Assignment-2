@@ -15,7 +15,18 @@ setTimeout(function() {
 document.addEventListener('DOMContentLoaded', function(event) {
   document.querySelector('body').style.opacity = 1
 })
+// Get the audio element and the volume control buttons
+const audio = document.getElementById("background-music");
+const volumeDown = document.getElementById("volume-down");
+const volumeUp = document.getElementById("volume-up");
 
+// Add event listeners for the volume control buttons
+volumeDown.addEventListener("click", function() {
+  audio.volume = Math.max(0, audio.volume - 0.1);
+});
+volumeUp.addEventListener("click", function() {
+  audio.volume = Math.min(1, audio.volume + 0.1);
+});
 let countUp = 0
 
 let countDown = 0

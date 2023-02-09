@@ -582,3 +582,49 @@ function getScore(limit = 10, all = true) {
         }
     })
 }
+function addMobileControls() {
+    // create buttons
+    var leftBtn = document.createElement("button");
+    leftBtn.innerHTML = "Left";
+    leftBtn.style.position = "fixed";
+    leftBtn.style.left = "0";
+    leftBtn.style.bottom = "0";
+  
+    var rightBtn = document.createElement("button");
+    rightBtn.innerHTML = "Right";
+    rightBtn.style.position = "fixed";
+    rightBtn.style.right = "0";
+    rightBtn.style.bottom = "0";
+  
+    var shootBtn = document.createElement("button");
+    shootBtn.innerHTML = "Shoot";
+    shootBtn.style.position = "fixed";
+    shootBtn.style.right = "50%";
+    shootBtn.style.bottom = "0";
+  
+    // append buttons to the document body
+    document.body.appendChild(leftBtn);
+    document.body.appendChild(rightBtn);
+    document.body.appendChild(shootBtn);
+  
+    // add event listeners to buttons
+    leftBtn.addEventListener("click", function() {
+      // call the function to move the player left
+      moveLeft();
+    });
+  
+    rightBtn.addEventListener("click", function() {
+      // call the function to move the player right
+      moveRight();
+    });
+  
+    shootBtn.addEventListener("click", function() {
+      // call the function to shoot
+      shoot();
+    });
+  }
+  
+  window.addEventListener("load", function() {
+    addMobileControls();
+  });
+  

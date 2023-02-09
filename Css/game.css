@@ -85,3 +85,14 @@ p {
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+@media only screen and (max-width: 767px) {
+  /* styles for mobile devices */
+  .gameContainer {
+    width: 100%;
+    height: 100%;
+    transform: scale(0.7);
+    transform-origin: top left;
+  }
+
+  /* adjust the size of other elements as needed */
+}

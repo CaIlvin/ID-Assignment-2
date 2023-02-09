@@ -16,9 +16,14 @@
         </style>
     </head>
     <body>
-      <audio src="/Music/background-music.mp3" autoplay>
+      <audio id="background-music" src="/Music/background-music.mp3" autoplay>
         <embed src="/Music/background-music.mp3" hidden="true" loop="true" autostart="true">
-      </audio>
+      </audio> 
+      
+      <div id="volume-control">
+        <button id="volume-down">-</button>
+        <button id="volume-up">+</button>
+      </div>
       <nav>
         <button class = "escButton buttonCenter prevent-select" onclick="showPopup()">!</button>
         <div class="popup" id="popupWindow">

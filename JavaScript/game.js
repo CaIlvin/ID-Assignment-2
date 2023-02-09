@@ -7,6 +7,19 @@ const APIKEY = "63d202d4a95709597409cfa8";
 canvas.width = innerWidth
 canvas.height = innerHeight
 
+// Get the audio element and the volume control buttons
+const audio = document.getElementById("background-music");
+const volumeDown = document.getElementById("volume-down");
+const volumeUp = document.getElementById("volume-up");
+
+// Add event listeners for the volume control buttons
+volumeDown.addEventListener("click", function() {
+  audio.volume = Math.max(0, audio.volume - 0.1);
+});
+volumeUp.addEventListener("click", function() {
+  audio.volume = Math.min(1, audio.volume + 0.1);
+});
+
 class Plane {
     constructor() {
         this.velocity = {

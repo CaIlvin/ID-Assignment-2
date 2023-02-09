@@ -582,25 +582,56 @@ function getScore(limit = 10, all = true) {
         }
     })
 }
-function addMobileControls() {
+var tablet = window.matchMedia("(max-width: 980px)")
+function addMobileControls(tablet) {
     // create buttons
     var leftBtn = document.createElement("button");
-    leftBtn.innerHTML = "Left";
+    leftBtn.innerHTML = "&#60;";
     leftBtn.style.position = "fixed";
-    leftBtn.style.left = "0";
-    leftBtn.style.bottom = "0";
-  
+    leftBtn.style.left = "8%";
+    leftBtn.style.bottom = "5%";
+    leftBtn.style.fontSize = "5vw";
+    leftBtn.style.background = "None";
+    leftBtn.style.border = "None";
+    leftBtn.style.color = "#807373";
+    if (tablet.matches) {
+        leftBtn.style.visibility = "Visible"
+    }
+    else {
+        leftBtn.style.visibility = "Hidden"        
+    }
+
     var rightBtn = document.createElement("button");
-    rightBtn.innerHTML = "Right";
+    rightBtn.innerHTML = "&#62;";
     rightBtn.style.position = "fixed";
-    rightBtn.style.right = "0";
-    rightBtn.style.bottom = "0";
+    rightBtn.style.left = "18%";
+    rightBtn.style.bottom = "5%";
+    rightBtn.style.fontSize = "5vw";
+    rightBtn.style.background = "None";
+    rightBtn.style.border = "None";
+    rightBtn.style.color = "#807373";
+    if (tablet.matches) {
+        rightBtn.style.visibility = "Visible"
+    }
+    else {
+        rightBtn.style.visibility = "Hidden"        
+    }
   
     var shootBtn = document.createElement("button");
-    shootBtn.innerHTML = "Shoot";
+    shootBtn.innerHTML = "O";
     shootBtn.style.position = "fixed";
-    shootBtn.style.right = "50%";
-    shootBtn.style.bottom = "0";
+    shootBtn.style.right = "8%";
+    shootBtn.style.bottom = "5%";
+    shootBtn.style.fontSize = "5vw";
+    shootBtn.style.background = "None";
+    shootBtn.style.border = "None";
+    shootBtn.style.color = "#807373";
+    if (tablet.matches) {
+        shootBtn.style.visibility = "Visible"
+    }
+    else {
+        shootBtn.style.visibility = "Hidden"        
+    }
   
     // append buttons to the document body
     document.body.appendChild(leftBtn);
@@ -610,21 +641,37 @@ function addMobileControls() {
     // add event listeners to buttons
     leftBtn.addEventListener("click", function() {
       // call the function to move the player left
-      moveLeft();
+      keys.q.pressed = true      
+      setTimeout(() => { 
+        keys.q.pressed = false        
+    }, 100)
     });
   
     rightBtn.addEventListener("click", function() {
       // call the function to move the player right
-      moveRight();
+      keys.e.pressed = true
+      setTimeout(() => { 
+        keys.e.pressed = false        
+      }, 100)
     });
   
     shootBtn.addEventListener("click", function() {
       // call the function to shoot
-      shoot();
+      lasers.push(new Laser({ // Append laser to array 
+        position: {
+            x: plane.position.x + plane.width / 2,
+            y: plane.position.y,
+    
+        },
+    
+        velocity: {
+            x:0,
+            y:-30   
+        }
+    }))
     });
-  }
-  
-  window.addEventListener("load", function() {
-    addMobileControls();
-  });
-  
+}
+
+window.addEventListener("load", function() {
+    addMobileControls(tablet);
+});

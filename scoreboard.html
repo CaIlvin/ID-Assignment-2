@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang= en>
   <head>
     <meta charset="UTF-8">
     <title>Earth Defender - Scoreboard</title>
@@ -17,15 +17,17 @@
       <h1>Leaderboard</h1>
       <table id="scoreboard">
         <thead>
-          <th>Name</th>
-          <th>Score</th>
-          <th>Time</th>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Time</th>            
+          </tr>
         </thead>
         <tbody></tbody>
       </table>
       <div class="optionWrapper">
-        <div id="homeOption" onclick="transitionToPage('index.html')"><span id="popupArrow">&#62;</span>HOME</div> <br>
-        <div id="gameOption" onclick="transitionToPage('game.html')"><span id="popupArrow">&#62;</span>GAME</div>        
+        <div id="homeOption" onclick="transitionToPage('index.html')"><span class="popupArrow">&#62;</span>HOME</div> <br>
+        <div id="gameOption" onclick="transitionToPage('game.html')"><span class="popupArrow">&#62;</span>GAME</div>        
       </div>      
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

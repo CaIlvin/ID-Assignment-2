@@ -7,7 +7,7 @@ body {
   animation: bgcolor 10s infinite alternate;
 }
 
-@keyframes bgcolor {
+@keyframes bgcolor { /*Shifting background*/
   0% {
       background-color: #333
   }
@@ -29,7 +29,7 @@ body {
   }
 }
 
-#popupArrow {
+.popupArrow {
   visibility: hidden;
 }
 
@@ -38,12 +38,13 @@ body {
   position: absolute;
   width: 50%;
   left: 25%;
+  font-size: 2rem;
   padding: 3% 0;
   justify-content: space-evenly;
   text-shadow: 5px 5px rgb(31, 31, 31);
 }
 
-#homeOption:hover #popupArrow, #gameOption:hover #popupArrow {
+#homeOption:hover .popupArrow, #gameOption:hover .popupArrow { /*Show when arrow when hover*/
   visibility: visible;
   animation: flicker linear 1s infinite forwards;
 }

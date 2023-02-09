@@ -376,3 +376,21 @@ body {
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+.color-mode-toggle {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+button {
+  background-color: #ccc;
+  border: none;
+  color: #333;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #aaa;
+}

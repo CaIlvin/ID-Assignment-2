@@ -583,11 +583,6 @@ function getScore(limit = 10, all = true) {
         }
     })
 }
-<<<<<<< HEAD
-
-=======
-var tablet = window.matchMedia("(max-width: 980px)")
->>>>>>> 35695995cc9261edf116899d2231b68c544d6f3b
 function addMobileControls(tablet) {
     // create buttons
     var leftBtn = document.createElement("button");
@@ -679,9 +674,4 @@ function addMobileControls(tablet) {
 
 window.addEventListener("load", function() {
     addMobileControls(tablet);
-<<<<<<< HEAD
 });
-  
-=======
-});
->>>>>>> 35695995cc9261edf116899d2231b68c544d6f3b

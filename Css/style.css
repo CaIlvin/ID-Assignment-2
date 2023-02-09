@@ -40,6 +40,7 @@ body {
 }
 
 .escButton:hover:after {
+  background: #ff0000;
 	transition-delay: .35s;
 }
 
@@ -291,7 +292,7 @@ body {
 
 @media only screen and (max-width: 980px) { /*Media query for phones and tablets*/
   .shape {
-    display: none;
+    visibility: hidden;
   }
   body {
     -webkit-animation: bgcolor 20s infinite alternate;
@@ -318,6 +319,10 @@ body {
         background-color: #0D1C26
     }
   }
+
+  .color-mode-toggle {
+    visibility: hidden;
+  }
 }
 
 #volume-control { /*Styling of volume control buttons*/
@@ -334,6 +339,7 @@ body {
   font-family: 'Press Start 2P', cursive;
   font-size: 2.5vw;
   font-weight: bolder;
+  color: #252525;
   text-shadow: 5px 3px rgb(31, 31, 31); 
   transition: transform 250ms; 
 }
@@ -371,26 +377,53 @@ body {
 #volume-up:active, #volume-down:active, #mute:active{
   transform: translateY(2px);
 }
+
 .prevent-select {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+
 .color-mode-toggle {
+  position: absolute;
   display: flex;
+  top: 10%;
   justify-content: center;
-  padding: 20px 0;
+  flex-direction: column;
+  padding: 1vw 0 0 0.5vw;
 }
 
-button {
-  background-color: #ccc;
+.color-mode-toggle button {
   border: none;
-  color: #333;
+  color: #252525;
+  font-size: 2.5vw;
+  background: none;  
   padding: 10px 20px;
   margin: 0 10px;
-  cursor: pointer;
+  text-shadow: 5px 5px rgb(31, 31, 31); 
+  transition: transform 250ms; 
 }
 
-button:hover {
-  background-color: #aaa;
+#light-mode:hover {
+  color: #FF6C1A;
+  transform: translateY(-4px);
+  transform: translate(0%, -0%) scale(1.2);
+}
+
+#dark-mode:hover {
+  color: #007AFF;
+  transform: translateY(-4px);
+  transform: translate(0%, -0%) scale(1.2);
+}
+
+#dark-mode:active {
+  color: #003E80;
+}
+
+#light-mode:active {
+  color: #80350D;
+}
+
+#light-mode:active, #dark-mode:active {
+  transform: translateY(2px);
 }

@@ -103,11 +103,11 @@ const lightModeButton = document.getElementById("light-mode");
   const darkModeButton = document.getElementById("dark-mode");
 
   lightModeButton.addEventListener("click", function() {
-    document.body.style.backgroundColor = "#fff";
+    document.body.style.backgroundColor = "#BFBFBF";
     document.body.style.color = "#000";
   });
 
   darkModeButton.addEventListener("click", function() {
     document.body.style.backgroundColor = "#333";
-    document.body.style.color = "#fff";
+    document.body.style.color = "#BFBFBF";
   });

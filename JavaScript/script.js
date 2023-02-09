@@ -15,10 +15,11 @@ setTimeout(function() {
 document.addEventListener('DOMContentLoaded', function(event) {
   document.querySelector('body').style.opacity = 1
 })
-// Get the audio element and the volume control buttons
+// Get the audio element, volume control buttons, and mute button
 const audio = document.getElementById("background-music");
 const volumeDown = document.getElementById("volume-down");
 const volumeUp = document.getElementById("volume-up");
+const mute = document.getElementById("mute");
 
 // Add event listeners for the volume control buttons
 volumeDown.addEventListener("click", function() {
@@ -26,6 +27,17 @@ volumeDown.addEventListener("click", function() {
 });
 volumeUp.addEventListener("click", function() {
   audio.volume = Math.min(1, audio.volume + 0.1);
+});
+
+// Add an event listener for the mute button
+mute.addEventListener("click", function() {
+  if (audio.muted) {
+    audio.muted = false;
+    mute.innerHTML = "Mute";
+  } else {
+    audio.muted = true;
+    mute.innerHTML = "Unmute";
+  }
 });
 let countUp = 0
 

@@ -6,6 +6,9 @@ A game by:
 Calvin (https://github.com/CaIlvin)
 Vikram (https://github.com/Viki9887)
 
+Link to game:
+(https://cailvin.github.io/ID-Assignment-2/)
+
 ## Design Process
 
 This website is for those that wants a blast from the past of arcade game while being reinvented in our rendition of the game. This website is in hope of acheiving a retroactive arcade style of memory with this project heavily trying to recreate that experience.
@@ -55,10 +58,13 @@ The theme of the website is minimalism. Interactive elements built in the web to
 
 Difference on mobile:
 
-- On mobile, the landing page background is changed to color shifting. The game page and secret page is not optimized for mobile
+- On mobile, the landing page background is changed to color shifting. The secret page is not optimized for mobile
 
-- Background music not working upon landing. Button that redirects to home page will enable it
-- On smaller screen, defeating aliens will occassionally drop them impromptly, without having to defeat the whole group
+Bugs:
+
+. Background music not working upon landing. Button that redirects to page will enable it
+. On smaller screen, defeating aliens will occassionally drop them impromptly, without having to defeat the whole group
+. Spraying across the screen can cause top row of alien to be removed alongside bottom row alien
 
 ## Credits
 
@@ -79,3 +85,5 @@ Difference on mobile:
 ### Acknowledgements
 
 - I received inspiration for this project from [YouTube] (https://www.youtube.com/@ChrisCourses)
+
+- A few coding techniques learnt from [CodePen] (https://codepen.io)

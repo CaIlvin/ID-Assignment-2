@@ -1,20 +1,23 @@
 let popup = document.getElementById("popupWindow");
-let body = document.querySelector('body')
-function showPopup(){
-popup.classList.add("showPopup");
+let body = document.querySelector('body');
+
+function showPopup(){ // To add class to popup
+popup.classList.add("showPopup"); 
 }
 function closepopup(){
 popup.classList.remove("showPopup");
 } 
-window.transitionToPage = function(href) {
-document.querySelector('body').style.opacity = 0
+
+window.transitionToPage = function(href) { // Transition effect to game and leaderboard page
+document.querySelector('body').style.opacity = 0;
 setTimeout(function() { 
-    window.location.href = href
-}, 500)
-}
+    window.location.href = href;
+}, 500);
+};
 document.addEventListener('DOMContentLoaded', function(event) {
-  document.querySelector('body').style.opacity = 1
-})
+  document.querySelector('body').style.opacity = 1;
+});
+
 // Get the audio element, volume control buttons, and mute button
 const audio = document.getElementById("background-music");
 const volumeDown = document.getElementById("volume-down");
@@ -39,13 +42,14 @@ mute.addEventListener("click", function() {
     mute.innerHTML = "Unmute";
   }
 });
-let countUp = 0
 
-let countDown = 0
+let countUp = 0; // Values to keep track of
 
-let countLeft = 0
+let countDown = 0;
 
-let countRight = 0
+let countLeft = 0;
+
+let countRight = 0;
 const inputs = {
   A: {
     pressed: false
@@ -58,40 +62,40 @@ const inputs = {
   Enter: {
     pressed: false
   },
-}
+};
 
-function secret() {
-  requestAnimationFrame(secret)
+function secret() { // Check if all inputs condition is true
+  requestAnimationFrame(secret);
   if (inputs.A.pressed && inputs.B.pressed && inputs.Enter.pressed && countUp === 2 && countDown === 2 && countLeft === 2 && countRight === 2) {
-    window.location.href = 'secret.html'
+    window.location.href = 'secret.html';
   }
 }
 
-secret()
+secret();
 
 addEventListener('keydown', ({key}) => {
-  console.log(key)
+  console.log(key);
   switch(key) {
     case 'a':
-      inputs.A.pressed = true
-      break
+      inputs.A.pressed = true;
+      break;
     case 'b':
-      inputs.B.pressed = true
-      break
+      inputs.B.pressed = true;
+      break;
     case 'ArrowUp':
-      countUp += 1
-      break
+      countUp += 1;
+      break;
     case 'ArrowDown':
-      countDown += 1
-      break
+      countDown += 1;
+      break;
     case 'ArrowLeft':
-      countLeft += 1
-      break
+      countLeft += 1;
+      break;
     case 'ArrowRight':
-      countRight += 1
-      break
+      countRight += 1;
+      break;
     case 'Enter':
-      inputs.Enter.pressed = true
-      break
+      inputs.Enter.pressed = true;
+      break;
   }
-})
+});

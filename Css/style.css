@@ -3,13 +3,10 @@ body {
   margin: 0px;
   font-family: 'Press Start 2P', cursive;
   font-size: 2vw;
-  /* height: 100%; */
   overflow: hidden;
   opacity: 0;
   transition: opacity .5s;
 }
-
-
 
 .escButton {
   background:none;  
@@ -324,6 +321,45 @@ body {
   }
 }
 
+#volume-control {
+  position: absolute;
+  bottom: 2%;
+  right: 1%;
+  text-align: center;
+  background: none;
+}
+
+#volume-control button {
+  border-style: none;  
+  background: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.5vw;
+  font-weight: bolder;
+  text-shadow: 5px 3px rgb(31, 31, 31); 
+  transition: transform 250ms; 
+}
+
+#volume-up:hover {
+  color: #2fff00;
+  transform: translateY(-4px);
+  transform: translate(0%, -0%) scale(1.2);
+}
+
+#volume-down:hover {
+  color: #FF1E0D;
+  transform: translateY(-4px);
+  transform: translate(0%, -0%) scale(1.2);
+}
+
+#mute:hover {
+  color: #FFF70D;
+  transform: translateY(-4px);
+  transform: translate(0%, -0%) scale(1.2);
+}
+
+#volume-up:active, #volume-down:active, #mute:active{
+  transform: translateY(2px);
+}
 .prevent-select {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */

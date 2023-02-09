@@ -10,21 +10,15 @@
           html {
             cursor: url('Images/crosshairs-solid.svg'), auto;  
           }
-          .escButton, .pushable, .popup button {
+          .escButton, .pushable, .popup button, #volume-control button:hover{
             cursor: url('Images/crosshairs-solid.svg'), auto;  
           }
         </style>
     </head>
-    <body>
+    <body class="prevent-select">
       <audio id="background-music" src="/Music/background-music.mp3" autoplay>
         <embed src="/Music/background-music.mp3" hidden="true" loop="true" autostart="true">
       </audio> 
-      
-      <div id="volume-control">
-        <button id="volume-down">-</button>
-        <button id="volume-up">+</button>
-        <button id="mute">Mute</button>
-      </div>
       <nav>
         <button class = "escButton buttonCenter prevent-select" onclick="showPopup()">!</button>
         <div class="popup" id="popupWindow">
@@ -63,6 +57,11 @@
             <img class="shape6" src="Images/star-regular.svg" alt="star">
           </div>
         </section>
+      <div id="volume-control">
+        <button id="volume-down">-</button>
+        <button id="volume-up">+</button>
+        <button id="mute">Mute</button>
+      </div>        
       </main>
         <script src="https://kit.fontawesome.com/377d809d75.js" crossorigin="anonymous"></script>
         <script src="JavaScript/script.js"></script>     
